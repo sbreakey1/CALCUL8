@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Calculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="icon" href="android-chrome-192x192.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+  <style>
+    .calc_element{
+      background-color: blue;
+      color: white;
+      text-align: center;
+      border-radius: 10%;
+      height: 20%
+    }
+    body{
+      font-size: 2rem;
+      background-color: lightgray;
+    }
+    div.col-sm-3{
+      width: 25%;
+    }
+    #screen{
+      background-color: darkgray;
+      color: white;
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+  <br>
+
+  <div class="container">
+    <div class="col-sm-1">
+      <p id="screen"></p>
+    </div>
+  </div>
+
+  <br><br>
+
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-3">
+        <p onclick="calculate(1)" class="calc_element">&#49;</p>
+        <p onclick="calculate(4)" class="calc_element">&#52;</p>
+        <p onclick="calculate(7)" class="calc_element">&#55;</p>
+        <p onclick="clr()" class="calc_element">CLR</p>
+      </div>
+
+      <div class="col-sm-3">
+        <p onclick="calculate(2)" class="calc_element">&#50;</p>
+        <p onclick="calculate(5)" class="calc_element">&#53;</p>
+        <p onclick="calculate(8)" class="calc_element">&#56;</p>
+        <p onclick="calculate(0)" class="calc_element">&#48;</p>
+      </div>
+
+      <div class="col-sm-3">
+        <p onclick="calculate(3)" class="calc_element">&#51;</p>
+        <p onclick="calculate(6)" class="calc_element">&#54;</p>
+        <p onclick="calculate(9)" class="calc_element">&#57;</p>
+        <p onclick="equals()" class="calc_element">=</p>
+      </div>
+
+      <div class="col-sm-3">
+        <p onclick="sum('+')" class="calc_element">&#43;</p>
+        <p onclick="sum('-')" class="calc_element">&#8722</p>
+        <p onclick="sum('*')" class="calc_element">&#215</p>
+        <p onclick="sum('/')" class="calc_element">&#247</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+
+  //A variable to hold the screen value
+  var counter=0;
+
+  //A variable to hold both scores
+  var counter1=0;
+  var counter2=0;
+
+  //variable to hold the result
+  var result = 0;
+
+  //A variable to hold the arithmetic sybmol
+  var symbol = "";
+
+  document.getElementById("screen").innerHTML=counter;
+
+  //If user clicks on number, do calculate with screen value
+  function calculate(param){
+    var num = param;
+    document.getElementById("screen").innerHTML=(document.getElementById("screen").innerHTML+num);
+  }
+
+  //A function to clear the screen
+  function clr(){
+    document.getElementById("screen").innerHTML=0;
+  }
+
+  //Function to add
+  function sum(parameter){
+
+    //Set the first variable to be screen value
+    counter1=document.getElementById("screen").innerHTML;
+
+    //Set the value of symbol to be the parameter passed
+    symbol = parameter;
+
+    document.getElementById("screen").innerHTML=0;
+  }
+
+  //Function to find answer
+  function equals(){
+
+    counter2=document.getElementById("screen").innerHTML;
+
+    //Check if the first value is not nothing
+    if(counter1!=0){
+      if(counter2!=0){
+
+        console.log(symbol);
+
+        //Check what the value of symbol is
+        if(symbol=='+'){
+          //addition
+          result=parseInt(counter1)+parseInt(counter2);
+        }
+        else if(symbol=='-'){
+          //subtraction
+          result=parseInt(counter1)-parseInt(counter2);
+        }
+        else if(symbol=='*'){
+          //multiplication
+          result=parseInt(counter1)*parseInt(counter2);
+        }
+        else if(symbol=='/'){
+          //division
+          result=parseInt(counter1)/parseInt(counter2);
+        }
+      }
+      document.getElementById("screen").innerHTML=result;
+    }else{
+      document.getElementById("screen").innerHTML=0;
+    }
+  }
+
+  window.addEventListener("load",function() {
+    setTimeout(function(){
+        // This hides the address bar:
+        window.scrollTo(0, 1);
+    }, 0);
+});
+
+  </script>
+
+</body>
+
+</html>
